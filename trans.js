@@ -39,7 +39,7 @@ function trans (mat1, mat2)
 
 function init()
 {
-	msgbox("hello");
+	alert("hello");
 }
 
 window.onload = function(){init();};
