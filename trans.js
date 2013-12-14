@@ -1,3 +1,7 @@
+function conv_rad(a) {
+	return (a * Math.PI / 180); 
+}
+
 function setAttr(el, tag, value)
 {
 	el.setAttribute(tag, value);
@@ -23,22 +27,32 @@ function round(v, p)
 }
 function get_T(x, y)
 {
-	return ([[1.000, 0.000, x], [0.000, 1.000, y], [0.000, 0.000, 1.000]]);
+	return ([[1.000, 0.000, x], 
+			[0.000, 1.000, y], 
+			[0.000, 0.000, 1.000]]);
 }
 
 function get_H(x, y)
 {
-	return ([[x, 0.000, 0.000], [0.000, y, 0.000], [0.000, 0.000, 1.000]]);
+	return ([[x, 0.000, 0.000], 
+			 [0.000, y, 0.000], 
+			[0.000, 0.000, 1.000]]);
 }
 
 function get_R(a)
 {
-	return ([[round(Math.cos(a), 1000), round(-Math.sin(a), 1000), 0.000], [round(Math.sin(a), 1000), round(Math.cos(a), 1000), 0.000], [0.000, 0.000, 1.000]]);
+	a = conv_rad(a);
+	return ([[Math.cos(a), -Math.sin(a), 0.000], 
+			[Math.sin(a), Math.cos(a), 0.000], 
+			[0.000,	0.000, 1.000]]);
 }
 
 function get_S(a)
 {
-
+	a = conv_rad(2 * a);
+	return ([[Math.cos(a), Math.sin(a), 0.0000], 
+			[Math.sin(a), -Math.cos(a), 0.000], 
+			[0.000, 0.000, 1.000]]);
 }
 
 function prod31(mat1, mat2)
@@ -61,29 +75,16 @@ function prod31(mat1, mat2)
 	return (mat3);
 }
 
-function prod33 (mat1, mat2)
-{
-	var i = 0;
-	var j;
-	while (i < 3)
-	 {
-		j = 0;
-		while (j < 3)
-		{
-			var num = 0;
-			var z = 0;
-			while (z < 3)
-				{
-					num += mat1[i][z] * mat2[z][j]; 
-					z++;
-				}
-			mat1[i][j] = num;
-			j++;
-		}
-		i++;
-	 }
-	 return (mat1);
+function prod33(m1, m2) {
+    var result = [];
+    for(var i = 0; i < m2.length; i++) {
+        result[i] = [];
+		for (var j = 0; j < m1[i].length; j++)
+			result[i][j] = m1[i][0] * m2[0][j] + m1[i][1] * m2[1][j] + m1[i][2] * m2[2][j];
+    }
+    return result;
 }
+
 
 function prod(mat1, mat2)
 {
@@ -128,16 +129,19 @@ function get_C(x, y) {
 		return ([this.x, this.y])
 		};
 	this.trans = function(mat) {
-		this.x = mat[0]; 
-		this.y = mat[1]; 
-		this.z = mat[2];
+		this.x = round(mat[0], 100); 
+		this.y = round(mat[1], 100); 
+		this.z = round(mat[2], 100);
 		};
 }
 function init()
 {
-	var coord = new get_C(0.000, 0.000);
-	var c = new get_C(0.000, 0.000);
-	var mat = prod(get_H(2, 1), get_T(-4.000, -3.000));
+	var coord = new get_C(1.000, 2.000);
+	var c = new get_C(1.000, 2.000);
+	var mat = get_T(2.000, 3.000);
+	mat = prod(get_H(1.000, -2.000), mat);
+	mat = prod(get_R(45), mat);
+	mat = prod(get_S(30), mat);
 	display_tab('el',mat);
 	c.trans(prod(mat, c.mat()));
 	var result = create("span");
