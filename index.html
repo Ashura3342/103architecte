@@ -2,21 +2,34 @@
 <html>
 	<head>
 		<title>Test</title>
-		<link href="style.css" rel="stylesheet" type="text/css"/> 
+		<link href="style.css" rel="stylesheet" type="text/css"/>
+		<link href="form.css" rel="stylesheet" type="text/css"/>
+		<script type="text/javascript" src="jquery.js"></script>
 		<script type="text/javascript" src="trans.js"></script>
-	</head>
+		<script type="text/javascript" src="form.js"></script>
+		<meta charset="UTF-8">	
+		</head>
 	<body>
 		<div class="page">
 			<div class="header"> 
 				<div class="header-content">
-					<span class="title">Title</span>
+					<span class="title">103architecte</span>
 				</div>
 			</div>
 			<div class="content">
-				<h1>Resultat</h1>
-				<div id="result">
-					<div id ="el"></div>
+			<div class="formulaire">
+			<label for="liste_trans'">Type de transformation</label>
+				<select id="liste_trans">
+					<option value="0"></option>
+					<option value="1">Translation</option>
+					<option value="2">Rotation</option>
+					<option value="3">Homothétie</option>
+					<option value="4">Symétrie</option>
+				</select>
+				<input type="button" value="Ajouter une transformation" onclick="add_transformation()" class="button_add" /><br />
+				<div class="new_trans">
 				</div>
+				<div class="bouton_valider"></div>
 			</div>
 		</div>
 	</body>
