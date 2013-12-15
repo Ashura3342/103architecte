@@ -161,6 +161,7 @@ function Coord(x, y) {
 	this.trans = function (mat) {
 		this.result.trans(prod(mat, this.result.mat()));
 	};
+	
 	this.display = function (el) {
 		el.innerHTML = '(' + this.origin.mat2() + ') => (' + this.result.mat2() + ')';
 	}
