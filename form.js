@@ -24,9 +24,9 @@ function add_transformation()
 	}
 	if (choix == 1)
 	{
-		place.append('<div class="transformation" id="T-'+nb_trans+'">');
-		place = $("#T-"+nb_trans);
-		id = "#T-"+nb_trans;
+		place.append('<div class="transformation" id="'+nb_trans+'">');
+		place = $("#"+nb_trans);
+		id = "#"+nb_trans;
 		place.append('<input onclick=delete_trans("'+id+'") class="delete_button" id="delete-'+nb_trans+'" value="X" type="button">');
 		place.append('<h3>Translation</h3>');
 		place.append('<h5>Suivant un vecteur de coordonnées <i>(i, j)</i> : T i j.</h5>');
@@ -35,9 +35,9 @@ function add_transformation()
 	}
 	else if (choix == 2)
 	{
-		place.append('<div class="transformation" id="R-'+nb_trans+'">');
-		place = $("#R-"+nb_trans);
-		id = "#R-"+nb_trans;
+		place.append('<div class="transformation" id="'+nb_trans+'">');
+		place = $("#"+nb_trans);
+		id = "#"+nb_trans;
 		place.append('<input onclick=delete_trans("'+id+'") class="delete_button" id="delete-'+nb_trans+'" value="X" type="button">');
 		place.append('<h3>Rotation</h3>');
 		place.append('<h5>de centre O et d\'angle <i>a</i> degrés : R <i>a</i>.</h5><br>');
@@ -45,9 +45,9 @@ function add_transformation()
 	}
 	else if (choix == 3)
 	{
-		place.append('<div class="transformation" id="H-'+nb_trans+'">');
-		place = $("#H-"+nb_trans);
-		id = "#H-"+nb_trans;
+		place.append('<div class="transformation" id="'+nb_trans+'">');
+		place = $("#"+nb_trans);
+		id = "#"+nb_trans;
 		place.append('<input onclick=delete_trans("'+id+'") class="delete_button" id="delete-'+nb_trans+'" value="X" type="button">');
 		place.append('<h3>Homothétie</h3>');
 		place.append('<h5>De centre O et de rapport m suivant <i>(0x)</i> et n suivant <i>(Oy)</i> : H m n.</h5>');
@@ -56,9 +56,9 @@ function add_transformation()
 	}
 	else if (choix == 4)
 	{
-		place.append('<div class="transformation" id="S-'+nb_trans+'">');
-		place = $("#S-"+nb_trans);
-		id = "#S-"+nb_trans;
+		place.append('<div class="transformation" id="'+nb_trans+'">');
+		place = $("#"+nb_trans);
+		id = "#"+nb_trans;
 		place.append('<input onclick=delete_trans("'+id+'") class="delete_button" id="delete-'+nb_trans+'" value="X" type="button">');
 		place.append('<h3>Symétrie</h3>');
 		place.append('<h5>Par rapport à un axe passant par O incliné de <i>a</i> degrés : S <i>a</i>.</h5><br>');
