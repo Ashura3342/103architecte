@@ -11,6 +11,19 @@
 	display: none;
 }
 
+#el 
+{
+	display: none;
+	width: 60%;
+	height: auto;
+	background-color: #a9dbca;
+	color:#ffffff;
+	padding: 1% 1% 1% 1%;
+	border-radius:10;
+	clear: both;
+	margin-bottom: 30px;
+}
+
 .formulaire {
 	width: auto;
 	height: auto;
@@ -19,6 +32,56 @@
 	padding: 1% 1% 1% 1%;
 	border-radius:10 10 10 10;
 	clear: both;
+	margin-bottom: 30px;
+}
+
+#liste_operation
+{
+	width: 60%;
+	height: auto;
+	background-color: #a9dbca;
+	color:#ffffff;
+	padding: 1% 1% 1% 1%;
+	border-radius:10 10 10 10;
+	clear: both;
+	display: none;
+	font-size: 20px;
+	position: relative;
+	top: -75px;
+}
+
+#start_coord
+{
+	width: 30%;
+	height: auto;
+	background-color: #a9dbca;
+	color:#ffffff;
+	padding: 1% 1% 1% 1%;
+	border-radius:10 10 10 10;
+	font-size: 20px;
+	float: right;
+	display: none;
+}
+
+#result
+{
+	width: 30%;
+	height: auto;
+	background-color: #a9dbca;
+	color:#ffffff;
+	padding: 1% 1% 1% 1%;
+	border-radius:10 10 10 10;
+	font-size: 20px;
+	float: right;
+	display: none;
+}
+
+h2
+{
+	margin: 0;
+	width: 100%;
+	font-size: 30px;
+	border-bottom: 1px solid #437564;
 }
 
 .coord-input
@@ -105,7 +168,7 @@ label
 	clear: both;
 }
 
-.button_add, .button_valider
+.button_add, .button_valider, .button_reset
 {
 	background-color: white;
 	padding: 10px;
@@ -114,14 +177,14 @@ label
 	font-size: 15px;
 }
 
-.button_add:hover, .button_valider:hover
+.button_add:hover, .button_valider:hover, .button_reset
 {
 	cursor: pointer;
 }
 
 .button_valider
 {
-	margin-left: 47%;
+	margin-left: 40%;
 }
 
 select

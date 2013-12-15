@@ -1,7 +1,7 @@
 <!HTML>
 <html>
 	<head>
-		<title>Test</title>
+		<title>103architecte</title>
 		<link href="style.css" rel="stylesheet" type="text/css"/>
 		<link href="form.css" rel="stylesheet" type="text/css"/>
 		<script type="text/javascript" src="jquery.js"></script>
@@ -20,8 +20,9 @@
 			<div class="header-right"></div>
 			<div class="content">
 				<div class="formulaire">
-					<div class="error"></div>
+					<h2>Nouveau calcul</h2>
 					<br />
+					<div class="error"></div>
 					<label for="coord-x">Coordonnée du point en X</label>
 					<input class="coord-input" id="coord-x" type="text" /> <br />
 					<label for="coord-y">Coordonnée du point en Y</label>
@@ -36,10 +37,13 @@
 						</select>
 						<input type="button" value="Ajouter une transformation" onclick="add_transformation()" class="button_add" /><br />
 						<div class="new_trans"></div>
-						<div class="bouton_valider"><input class="button_valider" type="button" value="Calculer" /></div>	
+						<div class="bouton_valider"><input class="button_valider" type="button" value="Calculer" /><input class="button_reset" type="button" value="Remettre à zéro" /></div>	
 				</div>
-			<div id="el"></div>
+			<h1>Résultat : </h1>
+			<div id="start_coord"></div>
+			<div id="liste_operation"></div>
 			<div id ="result"></div>
+			<div id="el"></div>
 			</div>
 		</div>
 	</body>

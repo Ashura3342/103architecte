@@ -162,7 +162,8 @@ function Coord(x, y) {
 		this.result.trans(prod(mat, this.result.mat()));
 	};
 	this.display = function (el) {
-		el.innerHTML = '(' + this.origin.mat2() + ') => (' + this.result.mat2() + ')';
+		$("#start_coord").append('(' + this.origin.mat2() + ')');
+		$("#result").append('(' + this.result.mat2() + ')');
 	}
 }
 
@@ -266,6 +267,11 @@ function check_param()
 		divResult.removeChild(divResult.lastChild);
 	error.html("");
 	error.css("display", "none");
+	$("h1").css("display", "none");
+	$("#liste_operation").css("display", "none").html("<h2>Liste des opérations :</h2>");
+	$("#start_coord").css("display", "none").html("<h2>Point d'origine</h2>");
+	$("#el").css("display", "none").html("<h2>Matrice à appliquer au point</h2>");
+	$("#result").css("display", "none").html("<h2>Nouvelle coordonnée</h2>");
 	if (point_x == "" || point_y == "")
 	{
 		error.append("La coordonnée du point n'est pas complet.<br />");
@@ -301,7 +307,9 @@ function calcul()
 	var param2;
 	var point_x = $("#coord-x").val();
 	var point_y = $("#coord-y").val();
+	var liste = $("#liste_operation");
 	var coord = new Coord(parseFloat(point_x), parseFloat(point_y));
+	
 	mat = undefined;
 	if (nb_trans > 0)
 	{
@@ -315,22 +323,26 @@ function calcul()
 					param1 = $("#translation-i-"+i).val();
 					param2 = $("#translation-j-"+i).val();
 					use_mat(get_T(parseFloat(param1), parseFloat(param2)));
+					liste.append("Translation de vecteur ("+param1+", "+param2+").<br />");
 				}
 				else if (element.hasClass("H"))
 				{
 					param1 = $("#homothetie-m-"+i).val();
 					param2 = $("#homothetie-n-"+i).val();
 					use_mat(get_H(parseFloat(param1), parseFloat(param2)));
+					liste.append("Homothétie de rapport "+param1+" et "+param2+".<br />");
 				}
 				else if (element.hasClass("S"))
 				{
 					param1 = $("#symetrie-a-"+i).val();
 					use_mat(get_S(parseFloat(param1)));
+					liste.append("Symétrie par rapport à un axe incliné de "+param1+" degrés.<br />");
 				}
 				else if (element.hasClass("R"))
 				{
 					param1 = $("#rotation-a-"+i).val();
 					use_mat(get_R(parseFloat(param1)));
+					liste.append("Rotation d'angle "+param1+" degrés.<br />");
 				}
 			}
 			i++;
@@ -338,6 +350,13 @@ function calcul()
 		display_mat('el');
 		coord.trans(mat);
 	}
+	else
+		liste.append("Pas de transformation.<br />");
+	$("h1").css("display", "block");
+	$("#liste_operation").css("display", "block");
+	$("#start_coord").css("display", "block");
+	$("#el").css("display", "block");
+	$("#result").css("display", "block");
 	var result = create("span");
 	setAttr(result, 'style', 'margin: 0 0 0 41%;');
 	coord.display(result)
@@ -345,20 +364,26 @@ function calcul()
 	append(getId('result'), result);
 }
 
+function reset()
+{
+	var i = 1;
+	
+	while (i  < nb_trans)
+	{
+		element = $("#"+i);
+			if (element.size != 0)
+				element.remove();
+	}
+	$("#coord-x").val('');
+	$("#coord-y").val('');
+	$("#liste_trans").val('0');
+	nb_trans = 0;
+}
+
 function init()
 {
 	$(".button_valider").on("click", function () { if (check_param() == true) calcul(); });
-	//use_mat(get_T(2, 3));
-	//use_mat(get_H(1, -2));
-	//use_mat(get_R(45));
-	//use_mat(get_S(30));
-	//display_mat('el');
-	//coord.trans(mat);
-	//var result = create("span");
-	//setAttr(result, 'style', 'margin: 0 0 0 41%;');
-	//coord.display(result)
-	//append(getId('result'), create('br'));
-	//append(getId('result'), result);
+	$(".button_reset").on("click", function () {  reset(); });
 }
 
 window.onload = function(){init();};
