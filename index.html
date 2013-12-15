@@ -20,6 +20,11 @@
 			<div class="header-right"></div>
 			<div class="content">
 				<div class="formulaire">
+					<div class="error">Les coordonnées ne sont pas des nombres entiers.<br />Les paramètres des transformations ne sont pas des nombres.</div>
+					<label for="coord-x">Coordonnée du point en X</label>
+					<input class="coord-input" id="coord-x" type="text" /> <br />
+					<label for="coord-y">Coordonnée du point en Y</label>
+					<input class="coord-input" id="coord-y" type="text" /> <br /> <br /><br />
 					<label for="liste_trans'">Type de transformation</label>
 						<select id="liste_trans">
 							<option value="0"></option>
@@ -30,7 +35,7 @@
 						</select>
 						<input type="button" value="Ajouter une transformation" onclick="add_transformation()" class="button_add" /><br />
 						<div class="new_trans"></div>
-						<div class="bouton_valider"></div>	
+						<div class="bouton_valider"><input class="button_valider" type="button" value="Calculer" /></div>	
 				</div>
 			<div id="el"></div>
 			<div id ="result"></div>

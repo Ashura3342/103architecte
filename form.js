@@ -1,14 +1,8 @@
 var nb_trans = 0;
-var restant = 0;
 
 function delete_trans(id)
 {
 	$(id).remove();
-	restant--;
-	if (restant == 0)
-	{
-		$(".bouton_valider").html("");
-	}
 }
 
 function add_transformation()
@@ -18,10 +12,7 @@ function add_transformation()
 	var id = "";
 	
 	if (choix != 0)
-	{
-		restant++;
 		nb_trans++;
-	}
 	if (choix == 1)
 	{
 		place.append('<div class="transformation" id="'+nb_trans+'">');
@@ -63,9 +54,5 @@ function add_transformation()
 		place.append('<h3>Symétrie</h3>');
 		place.append('<h5>Par rapport à un axe passant par O incliné de <i>a</i> degrés : S <i>a</i>.</h5><br>');
 		place.append('<label for="symetrie-a-'+nb_trans+'">a</label><input type="text" id="symetrie-a-'+nb_trans+'" />');
-	}
-	if (restant == 1)
-	{
-		$(".bouton_valider").append('<input type="button" class="button_valider" value="Calculer" />');
 	}
 }

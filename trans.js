@@ -166,14 +166,25 @@ function Coord(x, y) {
 	}
 }
 
+function display_mat(el)
+{
+	display_tab(el, mat);
+}
+
+function check_param()
+{
+	alert('lol');
+}
+
 function init()
 {
+	$(".button_valider").on("click", function () { check_param(); });
 	var coord = new Coord(1, 2);
 	use_mat(get_T(2, 3));
 	use_mat(get_H(1, -2));
 	use_mat(get_R(45));
 	use_mat(get_S(30));
-	display_tab('el',mat);
+	display_mat('el');
 	coord.trans(mat);
 	var result = create("span");
 	setAttr(result, 'style', 'margin: 0 0 0 41%;');
