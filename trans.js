@@ -1,3 +1,5 @@
+var mat;
+
 function conv_rad(a) {
 	return (a * Math.PI / 180); 
 }
@@ -25,8 +27,15 @@ function round(v, p)
 {
 	return (Math.round(v * p) / p);
 }
+
+function intToFloat(num, decPlaces) { 
+	return num.toFixed(decPlaces); 
+}
+
 function get_T(x, y)
 {
+	intToFloat(x, 3);
+	intToFloat(y, 3);
 	return ([[1.000, 0.000, x], 
 			[0.000, 1.000, y], 
 			[0.000, 0.000, 1.000]]);
@@ -34,6 +43,8 @@ function get_T(x, y)
 
 function get_H(x, y)
 {
+	intToFloat(x, 3);
+	intToFloat(y, 3);
 	return ([[x, 0.000, 0.000], 
 			 [0.000, y, 0.000], 
 			[0.000, 0.000, 1.000]]);
@@ -94,6 +105,13 @@ function prod(mat1, mat2)
 		return (prod31(mat1, mat2));
 }
 
+function use_mat(newMat) {
+	if (typeof (mat) === 'undefined')
+		mat = newMat;
+	else
+		mat = prod(newMat, mat);
+}
+
 function display_tab(element, tab)
 {
 	var el = getId(element);
@@ -134,19 +152,32 @@ function get_C(x, y) {
 		this.z = round(mat[2], 100);
 		};
 }
+
+function Coord(x, y) {
+	intToFloat(x, 3);
+	intToFloat(y, 3);
+	this.origin = new get_C(x, y);
+	this.result = new get_C(x, y);
+	this.trans = function (mat) {
+		this.result.trans(prod(mat, this.result.mat()));
+	};
+	this.display = function (el) {
+		el.innerHTML = '(' + this.origin.mat2() + ') => (' + this.result.mat2() + ')';
+	}
+}
+
 function init()
 {
-	var coord = new get_C(1.000, 2.000);
-	var c = new get_C(1.000, 2.000);
-	var mat = get_T(2.000, 3.000);
-	mat = prod(get_H(1.000, -2.000), mat);
-	mat = prod(get_R(45), mat);
-	mat = prod(get_S(30), mat);
+	var coord = new Coord(1, 2);
+	use_mat(get_T(2, 3));
+	use_mat(get_H(1, -2));
+	use_mat(get_R(45));
+	use_mat(get_S(30));
 	display_tab('el',mat);
-	c.trans(prod(mat, c.mat()));
+	coord.trans(mat);
 	var result = create("span");
 	setAttr(result, 'style', 'margin: 0 0 0 41%;');
-	result.innerHTML = '(' + coord.mat2() + ') => (' + c. mat2() + ')';
+	coord.display(result)
 	append(getId('result'), create('br'));
 	append(getId('result'), result);
 }
