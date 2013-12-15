@@ -29,7 +29,9 @@ function round(v, p)
 }
 
 function intToFloat(num, decPlaces) { 
-	return num.toFixed(decPlaces); 
+	var nb = new Number(parseFloat(num));
+	alert(typeof(nb));
+	return nb.toFixed(decPlaces); 
 }
 
 function get_T(x, y)
@@ -172,19 +174,158 @@ function display_mat(el)
 	display_tab(el, mat);
 }
 
-function check_param()
+function check_trans(id)
 {
-	alert('lol');
+	var error = $(".error");
+	var element = $("#"+id);
+	var no_error = true;
+	var param1;
+	var param2;
+	
+	if (element.hasClass("T"))
+	{
+		param1 = $("#translation-i-"+id).val();
+		param2 = $("#translation-j-"+id).val();
+		if (param1 == "" || param2 == "")
+		{
+			error.css("display", "block");
+			error.append("L'un des paramètres d'une transformation n'est pas renseigné.<br />");
+			no_error = false;
+		}
+		if (isNaN(param1) || isNaN(param2))
+		{
+			error.css("display", "block");
+			error.append("L'un des paramètres d'une transformation est incorrect.<br />");
+			no_error = false;
+		}
+	}
+	else if (element.hasClass("H"))
+	{
+		param1 = $("#homothetie-m-"+id).val();
+		param2 = $("#homothetie-n-"+id).val();
+		if (param1 == "" || param2 == "")
+		{
+			error.css("display", "block");
+			error.append("L'un des paramètres d'une transformation n'est pas renseigné.<br />");
+			no_error = false;
+		}
+		if (isNaN(param1) || isNaN(param2))
+		{
+			error.css("display", "block");
+			error.append("L'un des paramètres d'une transformation est incorrect.<br />");
+			no_error = false;
+		}
+	}
+	else if (element.hasClass("S"))
+	{
+		param1 = $("#symetrie-a-"+id).val();
+		if (param1 == "")
+		{
+			error.css("display", "block");
+			error.append("L'un des paramètres d'une transformation n'est pas renseigné.<br />");
+			no_error = false;
+		}
+		if (isNaN(param1))
+		{
+			error.css("display", "block");
+			error.append("L'un des paramètres d'une transformation est incorrect.<br />");
+			no_error = false;
+		}
+	}
+	else if (element.hasClass("R"))
+	{
+		param1 = $("#rotation-a-"+id).val();
+		if (param1 == "")
+		{
+			error.css("display", "block");
+			error.append("L'un des paramètres d'une transformation n'est pas renseigné.<br />");
+			no_error = false;
+		}
+		if (isNaN(param1))
+		{
+			error.css("display", "block");
+			error.append("L'un des paramètres d'une transformation est incorrect.<br />");
+			no_error = false;
+		}
+	}
+	return (no_error);
 }
 
-function init()
+function check_param()
 {
-	$(".button_valider").on("click", function () { check_param(); });
-	var coord = new Coord(1, 2);
-	use_mat(get_T(2, 3));
-	use_mat(get_H(1, -2));
-	use_mat(get_R(45));
-	use_mat(get_S(30));
+	var error = $(".error");
+	var point_x = $("#coord-x").val();
+	var point_y = $("#coord-y").val();
+	var no_error = true;
+	var i = 1;
+	var id;
+	var param_trans;
+	
+	error.html("");
+	error.css("display", "none");
+	if (point_x == "" || point_y == "")
+	{
+		error.append("La coordonnée du point n'est pas complet.<br />");
+		error.css("display", "block");
+		no_error = false;
+	}
+	if (isNaN(point_x) || isNaN(point_y))
+	{
+		error.append("La coordonnées du point doit être composé de nombres entier.<br />");
+		error.css("display", "block");
+		no_error = false;
+	}
+	if (nb_trans > 0)
+	{
+		while (i <= nb_trans)
+		{
+			if ($("#"+i).size != 0)
+			{
+				if (check_trans(i) == false)
+					return (false);
+			}
+			i++;
+		}
+	}
+	return (no_error);
+}
+
+function calcul()
+{
+	var i = 1;
+	var element;
+	var param1;
+	var param2;
+	var point_x = $("#coord-x").val();
+	var point_y = $("#coord-y").val();
+	var coord = new Coord(point_x, point_y);
+	
+	if (nb_trans > 0)
+	{
+		while (i <= nb_trans)
+		{
+			element = $("#"+i);
+			if (element.size != 0)
+			{
+				if (element.hasClass("T"))
+				{
+					param1 = $("#translation-i-"+i).val();
+					param2 = $("#translation-j-"+i).val();
+					use_mat(get_T(param1, param2));
+				}
+				else if (element.hasClass("H"))
+				{
+				}
+				else if (element.hasClass("S"))
+				{
+				}
+				else if (element.hasClass("R"))
+				{
+				}
+			}
+			i++;
+		}
+	}
 	display_mat('el');
 	coord.trans(mat);
 	var result = create("span");
@@ -192,6 +333,22 @@ function init()
 	coord.display(result)
 	append(getId('result'), create('br'));
 	append(getId('result'), result);
+}
+
+function init()
+{
+	$(".button_valider").on("click", function () { if (check_param() == true) calcul(); });
+	//use_mat(get_T(2, 3));
+	//use_mat(get_H(1, -2));
+	//use_mat(get_R(45));
+	//use_mat(get_S(30));
+	//display_mat('el');
+	//coord.trans(mat);
+	//var result = create("span");
+	//setAttr(result, 'style', 'margin: 0 0 0 41%;');
+	//coord.display(result)
+	//append(getId('result'), create('br'));
+	//append(getId('result'), result);
 }
 
 window.onload = function(){init();};

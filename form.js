@@ -15,7 +15,7 @@ function add_transformation()
 		nb_trans++;
 	if (choix == 1)
 	{
-		place.append('<div class="transformation" id="'+nb_trans+'">');
+		place.append('<div class="transformation T" id="'+nb_trans+'">');
 		place = $("#"+nb_trans);
 		id = "#"+nb_trans;
 		place.append('<input onclick=delete_trans("'+id+'") class="delete_button" id="delete-'+nb_trans+'" value="X" type="button">');
@@ -26,7 +26,7 @@ function add_transformation()
 	}
 	else if (choix == 2)
 	{
-		place.append('<div class="transformation" id="'+nb_trans+'">');
+		place.append('<div class="transformation R" id="'+nb_trans+'">');
 		place = $("#"+nb_trans);
 		id = "#"+nb_trans;
 		place.append('<input onclick=delete_trans("'+id+'") class="delete_button" id="delete-'+nb_trans+'" value="X" type="button">');
@@ -36,7 +36,7 @@ function add_transformation()
 	}
 	else if (choix == 3)
 	{
-		place.append('<div class="transformation" id="'+nb_trans+'">');
+		place.append('<div class="transformation H" id="'+nb_trans+'">');
 		place = $("#"+nb_trans);
 		id = "#"+nb_trans;
 		place.append('<input onclick=delete_trans("'+id+'") class="delete_button" id="delete-'+nb_trans+'" value="X" type="button">');
@@ -47,7 +47,7 @@ function add_transformation()
 	}
 	else if (choix == 4)
 	{
-		place.append('<div class="transformation" id="'+nb_trans+'">');
+		place.append('<div class="transformation S" id="'+nb_trans+'">');
 		place = $("#"+nb_trans);
 		id = "#"+nb_trans;
 		place.append('<input onclick=delete_trans("'+id+'") class="delete_button" id="delete-'+nb_trans+'" value="X" type="button">');
