@@ -29,7 +29,7 @@
 .transformation label
 {
 	display: block;
-	width: 40px;
+	width: 10%;
 	float: left;
 	font-weight: bold;
 	fon-size: 20px;
@@ -42,6 +42,7 @@
 	border: 2px solid #444444;
 	padding-left: 10px;
 	padding-right: 10px;
+	width: 80%;
 }
 
 .delete_button
