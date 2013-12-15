@@ -335,9 +335,9 @@ function calcul()
 			}
 			i++;
 		}
+		display_mat('el');
+		coord.trans(mat);
 	}
-	display_mat('el');
-	coord.trans(mat);
 	var result = create("span");
 	setAttr(result, 'style', 'margin: 0 0 0 41%;');
 	coord.display(result)
