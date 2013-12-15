@@ -5,6 +5,7 @@
 		<link href="style.css" rel="stylesheet" type="text/css"/>
 		<link href="form.css" rel="stylesheet" type="text/css"/>
 		<script type="text/javascript" src="jquery.js"></script>
+		<script type="text/javascript" src="three.min.js"></script>
 		<script type="text/javascript" src="trans.js"></script>
 		<script type="text/javascript" src="form.js"></script>
 		<meta charset="UTF-8">	
@@ -16,21 +17,25 @@
 					<span class="title">103architecte</span>
 				</div>
 			</div>
+			<div class="header-left"></div>
+			<div class="header-right"></div>
 			<div class="content">
-			<div class="formulaire">
-			<label for="liste_trans'">Type de transformation</label>
-				<select id="liste_trans">
-					<option value="0"></option>
-					<option value="1">Translation</option>
-					<option value="2">Rotation</option>
-					<option value="3">Homothétie</option>
-					<option value="4">Symétrie</option>
-				</select>
-				<input type="button" value="Ajouter une transformation" onclick="add_transformation()" class="button_add" /><br />
-				<div class="new_trans">
+				<div class="formulaire">
+				<label for="liste_trans'">Type de transformation</label>
+					<select id="liste_trans">
+						<option value="0"></option>
+						<option value="1">Translation</option>
+						<option value="2">Rotation</option>
+						<option value="3">Homothétie</option>
+						<option value="4">Symétrie</option>
+					</select>
+					<input type="button" value="Ajouter une transformation" onclick="add_transformation()" class="button_add" /><br />
 				</div>
+				<div class="new_trans">
 				<div class="bouton_valider"></div>
 			</div>
+			<div id="el"></div>
+			<div id ="result"></div>
 		</div>
 	</body>
 </html>
