@@ -28,10 +28,8 @@ function round(v, p)
 	return (Math.round(v * p) / p);
 }
 
-function intToFloat(num, decPlaces) { 
-	var nb = new Number(parseFloat(num));
-	alert(typeof(nb));
-	return nb.toFixed(decPlaces); 
+function intToFloat(num, decPlaces) {
+	return num.toFixed(decPlaces); 
 }
 
 function get_T(x, y)
@@ -260,6 +258,12 @@ function check_param()
 	var id;
 	var param_trans;
 	
+	var el = getId('el');
+	var divResult = getId('result');
+	while (el.hasChildNodes())
+		el.removeChild(el.lastChild);
+	while (divResult.hasChildNodes())
+		divResult.removeChild(divResult.lastChild);
 	error.html("");
 	error.css("display", "none");
 	if (point_x == "" || point_y == "")
@@ -297,8 +301,8 @@ function calcul()
 	var param2;
 	var point_x = $("#coord-x").val();
 	var point_y = $("#coord-y").val();
-	var coord = new Coord(point_x, point_y);
-	
+	var coord = new Coord(parseFloat(point_x), parseFloat(point_y));
+	mat = undefined;
 	if (nb_trans > 0)
 	{
 		while (i <= nb_trans)
@@ -310,16 +314,23 @@ function calcul()
 				{
 					param1 = $("#translation-i-"+i).val();
 					param2 = $("#translation-j-"+i).val();
-					use_mat(get_T(param1, param2));
+					use_mat(get_T(parseFloat(param1), parseFloat(param2)));
 				}
 				else if (element.hasClass("H"))
 				{
+					param1 = $("#homothetie-m-"+i).val();
+					param2 = $("#homothetie-n-"+i).val();
+					use_mat(get_H(parseFloat(param1), parseFloat(param2)));
 				}
 				else if (element.hasClass("S"))
 				{
+					param1 = $("#symetrie-a-"+i).val();
+					use_mat(get_S(parseFloat(param1)));
 				}
 				else if (element.hasClass("R"))
 				{
+					param1 = $("#rotation-a-"+i).val();
+					use_mat(get_R(parseFloat(param1)));
 				}
 			}
 			i++;
