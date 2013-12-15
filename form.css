@@ -16,18 +16,18 @@
 	display: none;
 	width: 60%;
 	height: auto;
-	background-color: #a9dbca;
+	background-color: #006cff;
 	color:#ffffff;
 	padding: 1% 1% 1% 1%;
 	border-radius:10;
-	clear: both;
+	float: left;
 	margin-bottom: 30px;
 }
 
 .formulaire {
 	width: auto;
 	height: auto;
-	background-color: #a9dbca;
+	background-color: #006cff;
 	color:#ffffff;
 	padding: 1% 1% 1% 1%;
 	border-radius:10 10 10 10;
@@ -39,7 +39,7 @@
 {
 	width: 60%;
 	height: auto;
-	background-color: #a9dbca;
+	background-color: #006cff;
 	color:#ffffff;
 	padding: 1% 1% 1% 1%;
 	border-radius:10 10 10 10;
@@ -54,7 +54,7 @@
 {
 	width: 30%;
 	height: auto;
-	background-color: #a9dbca;
+	background-color: #006cff;
 	color:#ffffff;
 	padding: 1% 1% 1% 1%;
 	border-radius:10 10 10 10;
@@ -67,7 +67,7 @@
 {
 	width: 30%;
 	height: auto;
-	background-color: #a9dbca;
+	background-color: #006cff;
 	color:#ffffff;
 	padding: 1% 1% 1% 1%;
 	border-radius:10 10 10 10;
@@ -80,8 +80,8 @@ h2
 {
 	margin: 0;
 	width: 100%;
-	font-size: 30px;
-	border-bottom: 1px solid #437564;
+	font-size: 25px;
+	border-bottom: 1px solid black;
 }
 
 .coord-input
@@ -192,6 +192,7 @@ select
 	height: 40px;
 	line-height: 40px;
 	vertical-align: middle;
+	border: 1px solid black;
 }
 
 #liste_trans

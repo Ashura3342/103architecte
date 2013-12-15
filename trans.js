@@ -368,11 +368,15 @@ function reset()
 {
 	var i = 1;
 	
-	while (i  < nb_trans)
+	if (nb_trans > 0)
 	{
-		element = $("#"+i);
-			if (element.size != 0)
-				element.remove();
+		while (i  <= nb_trans)
+		{
+			element = $("#"+i);
+				if (element.size != 0)
+					element.remove();
+			i++;
+		}
 	}
 	$("#coord-x").val('');
 	$("#coord-y").val('');
